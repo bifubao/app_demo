@@ -30,7 +30,7 @@ $display_desc = "这是我的第一个测试订单，希望能给我赚很多比
 // 若回调URL为空，则币付宝服务端不会发出回调通知
 $external_callback_url = "http://10.0.1.254/app_demo/callback.php";
 // 订单成功重定向地址，若携带次参数，订单成功后会重定向到此URL。varchar(128)
-$external_redirect_url = "";
+$external_redirect_url = "https://www.bifubao.com";
 
 
 // 请求参数

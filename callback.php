@@ -15,25 +15,26 @@ if (empty($_POST['_request_check_']) || empty($_POST['_signature_']) ||
   echo "invalid request_check or signature or request_id";exit;
 }
 
-// rsa public key
-//$bifubao_pubkey = "-----BEGIN PUBLIC KEY-----
-//MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqUSnx8dqJ0UC0jvFTEdL
-//gde7BSmKi8GzDnxvu/AMQw7TG3pRKAAKQJRYUSqpgMyOwUSrv3yfu3gBJwufjWJz
-//Kgtm8D9TOoYnZMJm4x5Lv9/EpYEg0zrAsmU/6rZJ9mYRaNPrt811Thju0/19fa77
-//XnsQ78UmvV4zCePkKAArO70SsU/hf1SinDX//t0a3/UOk0DhKoJZpzjb5mb+dcXM
-//GOJKpAONDGDK2UE1W67HmIG72b/R/G8CAFYbw4MGCjb0/Ee6obcAGK3Cj1JcuHjH
-//NzymBH0NuDvyz7fJuTg9Eplnh1blNeCJoG/vv7VLZNKetTMTx+H2X534RUQ4XheX
-//4QIDAQAB
-//-----END PUBLIC KEY-----";
+// bifubao rsa public, production
 $bifubao_pubkey = "-----BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvfE1kBFrPjBY8qMNSBsK
-kaxFr4L10rJf6TUtpctmotuvZJtX4JDVFEBNRAQD+VNr2av+QZ72EyJu5Cq39AUP
-LGOV8XPOigiVvj52dpRJi7zfKYSzlZIJnAHHa9im7PuiDTbgJpAPzlBKrUr1l5T7
-E/RtYrkbLyAL3mJhsBnP2WW4Yta94mK6bY2SWA7FTU4BSQaiH8PGixpKE75QjTjW
-vii4QHRIORJLHS6VS6RPMqrtHoP3qtJszRLfV/gBju5lIGJyBKVpzxLcItcxoz8F
-mYmOQEyUb7Lyp8+FLOInY3xXDPDz7leYVemqgEmWk+1Aiz+TOsTQU4NxzsFNAJNa
-SwIDAQAB
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqUSnx8dqJ0UC0jvFTEdL
+gde7BSmKi8GzDnxvu/AMQw7TG3pRKAAKQJRYUSqpgMyOwUSrv3yfu3gBJwufjWJz
+Kgtm8D9TOoYnZMJm4x5Lv9/EpYEg0zrAsmU/6rZJ9mYRaNPrt811Thju0/19fa77
+XnsQ78UmvV4zCePkKAArO70SsU/hf1SinDX//t0a3/UOk0DhKoJZpzjb5mb+dcXM
+GOJKpAONDGDK2UE1W67HmIG72b/R/G8CAFYbw4MGCjb0/Ee6obcAGK3Cj1JcuHjH
+NzymBH0NuDvyz7fJuTg9Eplnh1blNeCJoG/vv7VLZNKetTMTx+H2X534RUQ4XheX
+4QIDAQAB
 -----END PUBLIC KEY-----";
+// // bifubao rsa public, development
+// $bifubao_pubkey = "-----BEGIN PUBLIC KEY-----
+// MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvfE1kBFrPjBY8qMNSBsK
+// kaxFr4L10rJf6TUtpctmotuvZJtX4JDVFEBNRAQD+VNr2av+QZ72EyJu5Cq39AUP
+// LGOV8XPOigiVvj52dpRJi7zfKYSzlZIJnAHHa9im7PuiDTbgJpAPzlBKrUr1l5T7
+// E/RtYrkbLyAL3mJhsBnP2WW4Yta94mK6bY2SWA7FTU4BSQaiH8PGixpKE75QjTjW
+// vii4QHRIORJLHS6VS6RPMqrtHoP3qtJszRLfV/gBju5lIGJyBKVpzxLcItcxoz8F
+// mYmOQEyUb7Lyp8+FLOInY3xXDPDz7leYVemqgEmWk+1Aiz+TOsTQU4NxzsFNAJNa
+// SwIDAQAB
+// -----END PUBLIC KEY-----";
 $pubkey_id = openssl_pkey_get_public($bifubao_pubkey);
 // get signature
 $signature = base64_decode($_POST['_signature_']);
