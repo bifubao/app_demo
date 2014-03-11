@@ -46,7 +46,7 @@ function bifubao_get_db($db_name) {
 function bifubao_save_callback_to_db($request_id, $content_type, $content) {
 	$db = bifubao_get_db(DB_MAIN);
 	
-	$sql = "INSERT INTO `queue_callback`(`handle_status`, `request_id`, 
+	$sql = "INSERT INTO `bifubao_queue_callback`(`handle_status`, `request_id`, 
 				`content_type`, `content_json`, `creation_time`, `last_modify_time`) 
 			VALUES (:handle_status, :request_id, 
 				:content_type, :content_json, :creation_time, :last_modify_time)";
