@@ -46,6 +46,8 @@ $params = array(
 );
 
 // 全局参数
+$sign_algo = "sha1"; // enom("sha1", "sha512");
+$params['_sign_algo_']   = $sign_algo;  // default is 'sha512'
 $params['_time_']        = time();
 $params['_app_hash_id_'] = $_CFG['app_hash_id'];
 $params['_counter_']     = bifubao_get_app_counter($_CFG['app_hash_id']);
@@ -53,7 +55,7 @@ $params['_counter_']     = bifubao_get_app_counter($_CFG['app_hash_id']);
 // sign
 $sign_data = bifubao_make_sign_data($params);
 $pkeyid    = openssl_pkey_get_private($_CFG['app_rsa_private_key']);
-if (openssl_sign($sign_data, $signature, $pkeyid, OPENSSL_ALGO_SHA512) == false) {
+if (openssl_sign($sign_data, $signature, $pkeyid, $sign_algo) == false) {
 	die("openssl_sign failure");
 }
 // put signature
