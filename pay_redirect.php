@@ -46,8 +46,9 @@ $params = array(
 );
 
 // 全局参数
-$sign_algo = "sha1"; // enom("sha1", "sha512");
-$params['_sign_algo_']   = $sign_algo;  // default is 'sha512'
+$sign_algo = "sha512"; // enom("sha1", "sha512");
+// default is 'sha512', if your platform does not support 'sha512', please try 'sha1'
+$params['_sign_algo_']   = $sign_algo;
 $params['_time_']        = time();
 $params['_app_hash_id_'] = $_CFG['app_hash_id'];
 $params['_counter_']     = bifubao_get_app_counter($_CFG['app_hash_id']);
