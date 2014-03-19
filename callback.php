@@ -36,13 +36,22 @@ NzymBH0NuDvyz7fJuTg9Eplnh1blNeCJoG/vv7VLZNKetTMTx+H2X534RUQ4XheX
 // SwIDAQAB
 // -----END PUBLIC KEY-----";
 $pubkey_id = openssl_pkey_get_public($bifubao_pubkey);
-// get signature
+
+// get signature(sha512)
 $signature = base64_decode($_POST['_signature_']);
 // verify
 if (openssl_verify(bifubao_make_sign_data($_POST), $signature, 
                    $pubkey_id, OPENSSL_ALGO_SHA512) !== 1) {
-  echo "openssl_verify failure";exit;
+  echo "openssl_verify failure(sha512)";exit;
 }
+
+// // get signature(sha1), if your platform does not support 'sha512', please try 'sha1'
+// $signature_sha1 = base64_decode($_POST['_signature_sha1_']);
+// // verify
+// if (openssl_verify(bifubao_make_sign_data($_POST), $signature_sha1, 
+//                    $pubkey_id, OPENSSL_ALGO_SHA1) !== 1) {
+//   echo "openssl_verify failure(sha1)";exit;
+// }
 
 
 //

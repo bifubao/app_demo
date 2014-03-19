@@ -56,9 +56,16 @@ $params['_counter_']     = bifubao_get_app_counter($_CFG['app_hash_id']);
 // sign
 $sign_data = bifubao_make_sign_data($params);
 $pkeyid    = openssl_pkey_get_private($_CFG['app_rsa_private_key']);
-if (openssl_sign($sign_data, $signature, $pkeyid, $sign_algo) == false) {
-	die("openssl_sign failure");
+if ($sign_algo == "sha512") {
+	if (openssl_sign($sign_data, $signature, $pkeyid, OPENSSL_ALGO_SHA512) == false) {
+		die("openssl_sign failure");
+	}
+} else if ($sign_algo == "sha1") {
+	if (openssl_sign($sign_data, $signature, $pkeyid, OPENSSL_ALGO_SHA1) == false) {
+		die("openssl_sign failure");
+	}
 }
+
 // put signature
 $params['_signature_'] = base64_encode($signature);
 

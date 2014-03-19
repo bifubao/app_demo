@@ -13,6 +13,7 @@ if(!defined('IN_BIFUBAO')) {
 // generate sign data string
 function bifubao_make_sign_data($arr) {
 	unset($arr['_signature_']);
+	unset($arr['_signature_sha1_']);
 	ksort($arr);
 	$sign_str = '';
 	if (!empty($arr)) {
